@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib.auth.views import PasswordResetView
+from allauth.account.views import PasswordChangeView
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from . import forms
 
 
@@ -19,3 +22,8 @@ def sign_up(request):
         form = forms.RegisterForm()
 
     return render(request, "registration/sign-up.html", {"form": form})
+
+
+def login_after_reset_password(request):
+    url = reverse("account_login")
+    return redirect(url)

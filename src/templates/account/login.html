@@ -1,0 +1,17 @@
+{% extends "rabbit/base.html" %}
+
+{% block title %}
+Log In
+{% endblock title %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load allauth account socialaccount %}
+{% block content %}
+<h2>Log In</h2>
+<form method="POST">
+    {% csrf_token %} {{ form|crispy }}
+    <p>Don't have an account? Create one <a href="{% url 'account_signup' %}">Here</a>!</p>
+    <button type="submit" class="btn btn-success">Login</button>
+</form>
+{% endblock content %}
